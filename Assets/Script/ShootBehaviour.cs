@@ -1,23 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShootBehaviour : MonoBehaviour {
+public class ShootBehaviour : Default {
     public float speed;
 	// Use this for initialization
 	void Start () {
 	
 	}
 
-    void OnTriggerEnter(Collider col)
+    void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Finish")
-        Destroy(gameObject);
         if (col.gameObject.tag == "Enemy")
+        {
             Destroy(col.gameObject);
+        }
+        if (col.gameObject.tag == "Finish")
+        {
+            Destroy(gameObject);
+        }
     }
 
 	// Update is called once per frame
 	void Update () {
-        transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+
+        rigidbody.AddRelativeForce(speed , 0, 0,ForceMode.Force);
 	}
 }
