@@ -10,6 +10,6 @@ public class Space_Move : Default {
 	
 	// Update is called once per frame
 	void Update () {
-        this.renderer.material.mainTextureOffset += new Vector2(-1 * Mathf.Pow( Time.deltaTime,2),0);
+        this.renderer.material.mainTextureOffset -= new Vector2(-1 * Mathf.Pow( Time.deltaTime,2),0);
 	}
-}
+} 
