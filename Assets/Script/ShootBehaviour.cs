@@ -13,6 +13,11 @@ public class ShootBehaviour : Default {
         if (col.gameObject.tag == "Enemy")
         {
             Destroy(col.gameObject);
+<<<<<<< HEAD
+=======
+            Destroy(gameObject);
+            GameObject.FindGameObjectWithTag("Respawn").GetComponent<Respawn>().score += 1;
+>>>>>>> origin/master
         }
         if (col.gameObject.tag == "Finish")
         {
