@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Default : MonoBehaviour {
+public class BossMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
