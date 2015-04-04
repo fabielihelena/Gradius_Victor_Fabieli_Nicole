@@ -5,7 +5,7 @@ public class ShootBehaviour : Default {
     public float speed;
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 
     void OnCollisionEnter(Collision col)
@@ -25,6 +25,6 @@ public class ShootBehaviour : Default {
 	// Update is called once per frame
 	void Update () {
 
-        rigidbody.AddRelativeForce(speed , 0, 0,ForceMode.Force);
+        rigidbody.AddRelativeForce(speed  , 0, 0,ForceMode.Impulse);
 	}
 }
