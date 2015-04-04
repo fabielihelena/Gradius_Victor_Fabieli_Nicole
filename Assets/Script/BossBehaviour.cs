@@ -5,21 +5,14 @@ public class BossBehaviour : Default {
 
     public float speedz;
     public int life = 20;
-
+    public GameObject bullet;
+    int timer = 0;
+    public int limit;
 	// Use this for initialization
 	void Start () {
 
 	}
-    void OnCollisionEnter(Collision col)
-    {
-        Debug.Log("Colidiu: " + col.gameObject.name);
-        if (col.gameObject.tag == "Bullet")
-        {
-            Debug.Log("LOL");
-            life--;
-            Destroy(col.gameObject);
-        }
-    }
+    
    
 	// Update is called once per frame
 	void Update () {
@@ -28,6 +21,12 @@ public class BossBehaviour : Default {
             Debug.Log(life);
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
+        }
+        timer++;
+        if(timer > limit)
+        {
+            Instantiate(bullet, transform.position, Quaternion.identity);
+            timer = 0;
         }
 	}
 }

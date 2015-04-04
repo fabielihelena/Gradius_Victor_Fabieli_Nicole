@@ -13,7 +13,7 @@ public class GradiusBehaviour : Default {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(transform.position);
+        rigidbody.velocity = Vector4.zero;
         if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && transform.position.z < 60) 
         {
             transform.position += new Vector3(0, 0, speed * Time.deltaTime);
@@ -39,6 +39,11 @@ public class GradiusBehaviour : Default {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(Bullet, transform.position + new Vector3(1.5f, 0, 0), Quaternion.identity);
+        }
+
+        if(hp <= 0)
+        {
+            Destroy(gameObject);
         }
 
 	}
