@@ -1,6 +1,8 @@
-﻿using UnityEngine;using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 using System.IO;
+using System.Collections.Generic;
 public class Respawn : MonoBehaviour {
 
 
@@ -16,6 +18,7 @@ public class Respawn : MonoBehaviour {
     Text pontos;
     Text vida;
     Text HS;
+    GameObject bossRect;
     public GameObject jogador;
     string[] savedData;
 	// Use this for initialization
@@ -25,6 +28,7 @@ public class Respawn : MonoBehaviour {
         HS = GameObject.FindGameObjectWithTag("HS").GetComponent<Text>();
         savedData = File.ReadAllLines("save.txt");
         highScore = int.Parse(savedData[0]);
+        bossRect = GameObject.FindGameObjectWithTag("BLife");
         //jogador = GameObject.Find("Player");
 	}
 	
@@ -33,9 +37,17 @@ public class Respawn : MonoBehaviour {
        vida.text = "Vida: " + GameObject.FindGameObjectWithTag("Player").GetComponent<GradiusBehaviour>().hp.ToString();
         pontos.text = "Pontos: " + score.ToString();
         HS.text = "Melhor Pontuacao :" + highScore;
+        if(GameObject.FindGameObjectWithTag("BossEye") != null)
+        {
+            BossBehaviour b = GameObject.FindGameObjectWithTag("BossEye").GetComponent<BossBehaviour>();
+            bossRect.GetComponent<RectTransform>().sizeDelta = new Vector2(b.life * 5, 100);
+            Debug.Log(bossRect.GetComponent<RectTransform>().sizeDelta);
+        }
+            
+        
         timer++;
 
-        if(score == scoreLimit && hasBoss)
+        if(score > scoreLimit && hasBoss)
         {
             hasBoss = false;
         }
@@ -64,8 +76,8 @@ public class Respawn : MonoBehaviour {
 
             timer = 0;
         }
-        
-         if(!hasBoss && score.Equals(scoreLimit))
+       // Debug.Log("Chefão apereceu " + hasBoss + "scoreLimit " + scoreLimit + "Numero de inimigos" + GameObject.FindGameObjectsWithTag("Enemy").Length);
+        if (!hasBoss && score > scoreLimit && GameObject.FindGameObjectsWithTag("Enemy").Length.Equals(0))
         {
             Instantiate(boss);
             scoreLimit += 20;
