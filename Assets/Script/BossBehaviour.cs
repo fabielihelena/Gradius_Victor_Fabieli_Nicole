@@ -21,6 +21,7 @@ public class BossBehaviour : Default {
             Debug.Log(life);
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
+            GameObject.FindGameObjectWithTag("Respawn").GetComponent<Respawn>().bossIsDead = true;
         }
         timer++;
         if(timer > limit)

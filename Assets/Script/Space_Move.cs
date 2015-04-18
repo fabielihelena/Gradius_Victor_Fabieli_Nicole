@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Space_Move : Default {
-
+    public float r;
 	// Use this for initialization
 	void Start () {
 		
@@ -10,6 +10,6 @@ public class Space_Move : Default {
 	
 	// Update is called once per frame
 	void Update () {
-        this.renderer.material.mainTextureOffset -= new Vector2(-1 * Mathf.Pow( Time.deltaTime,1),0);
+        this.renderer.material.mainTextureOffset -= new Vector2(-1 * Mathf.Pow( Time.deltaTime,r),0);
 	}
 } 

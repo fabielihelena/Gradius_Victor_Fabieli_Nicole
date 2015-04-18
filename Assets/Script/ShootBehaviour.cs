@@ -10,12 +10,11 @@ public class ShootBehaviour : Default {
 
     void OnCollisionEnter(Collision col)
     {
-        rigidbody.velocity = Vector3.zero;
         if (col.gameObject.tag == "Enemy")
         {
-            col.gameObject.GetComponent<Enemy_Behaviour>().life -= 1;
             Destroy(gameObject);
-            GameObject.FindGameObjectWithTag("Respawn").GetComponent<Respawn>().score += 1;
+            col.gameObject.GetComponent<Enemy_Behaviour>().life -= 1;
+            
         }
         if (col.gameObject.tag == "Finish")
         {
